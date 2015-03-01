@@ -1,0 +1,15 @@
+class <%= metadata.name %>::params {
+    case $::osfamily {
+        'Debian': {
+            $package_name = '<%= metadata.name %>'
+            $service_name = '<%= metadata.name %>'
+        }
+        'Redhat': {
+            $package_name = '<%= metadata.name %>'
+            $service_name = '<%= metadata.name %>'
+        }
+        default: {
+            fail("${::operatingsystem} not supported")
+        }
+    }
+}
