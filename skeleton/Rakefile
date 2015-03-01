@@ -4,7 +4,7 @@ require 'puppet-lint/tasks/puppet-lint'
 exclude_paths = ["spec/**/*", "pkg/**/*", "vendor/**/*", "bundle/**/*" ]
 Rake::Task[:lint].clear
 PuppetLint::RakeTask.new :lint do |config|
-  config.disable_checks = [ '80chars', 'class_parameter_defaults', 'class_inherits_from_params_class' ]
+  config.disable_checks = %w(80chars class_parameter_defaults class_inherits_from_params_class autoloader_layout)
   config.log_format = "%{path}:%{linenumber}:%{check}:%{KIND}:%{message}"
   config.fail_on_warnings = true
   config.ignore_paths = exclude_paths
