@@ -1,0 +1,6 @@
+class <%= metadata.name %>::install {
+
+    package { $::<%= metadata.name %>::package_name:
+    ensure => present,
+    }
+}
