@@ -10,7 +10,6 @@ PuppetLint::RakeTask.new :lint do |config|
   config.ignore_paths = exclude_paths
 end
 
-
 desc 'Run syntax, lint, and spec tests.'
 task :test => [
          :lint,
