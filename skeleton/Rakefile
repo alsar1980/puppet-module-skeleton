@@ -2,6 +2,8 @@ require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-lint/tasks/puppet-lint'
 
 exclude_paths = ["spec/**/*", "pkg/**/*", "vendor/**/*", "bundle/**/*" ]
+
+# puppet-lint configuration
 Rake::Task[:lint].clear
 PuppetLint::RakeTask.new :lint do |config|
   config.disable_checks = %w(80chars class_parameter_defaults class_inherits_from_params_class autoloader_layout)
@@ -10,8 +12,12 @@ PuppetLint::RakeTask.new :lint do |config|
   config.ignore_paths = exclude_paths
 end
 
+# puppet syntax check configuration
+PuppetSyntax.exclude_paths = exclude_paths
+
 desc 'Run syntax, lint, and spec tests.'
 task :test => [
+         :syntax,
          :lint,
          :spec,
      ]
